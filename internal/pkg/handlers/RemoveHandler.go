@@ -17,6 +17,6 @@ func RemoveHandler(r *persistence.Repository) fiber.Handler {
 		if !r.Remove(id) {
 			return c.SendStatus(fiber.StatusNotFound)
 		}
-		return nil
+		return c.SendStatus(fiber.StatusNoContent)
 	}
 }
