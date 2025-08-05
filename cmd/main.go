@@ -1,6 +1,8 @@
 package main
 
 import (
+	"log"
+
 	"github.com/gofiber/fiber/v2"
 
 	"github.com/tucuxi/hmcts/internal/pkg/handlers"
@@ -9,11 +11,11 @@ import (
 
 func main() {
 	r := persistence.NewRepository()
-	
+
 	app := fiber.New()
 	app.Get("/cases/:id", handlers.GetHandler(r))
 	app.Get("/cases", handlers.ListHandler(r))
 	app.Post("/cases", handlers.AddHandler(r))
 	app.Delete("/cases/:id", handlers.RemoveHandler(r))
-	app.Listen(":3000")
+	log.Fatal(app.Listen(":3000"))
 }
